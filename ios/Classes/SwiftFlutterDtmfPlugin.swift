@@ -28,7 +28,6 @@ public class SwiftFlutterDtmfPlugin: NSObject, FlutterPlugin {
         if call.method == "playTone"
         {
             guard let digits = arguments?["digits"] as? String else {return}
-            result("Digits received" + digits)
             let samplingRate =  arguments?["samplingRate"] as? Double ?? 8000.0
             playTone(digits: digits, samplingRate: samplingRate)
         }

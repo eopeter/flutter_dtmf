@@ -27,10 +27,11 @@ class FlutterDtmfPlugin: MethodCallHandler {
     else if (call.method == "playTone")
     {
       var digits = arguments?.get("digits") as? String;
-      var samplingRate = arguments?.get("samplingRate") as? Float
+      var samplingRate = arguments?.get("samplingRate") as? Float;
+      var durationMs = arguments?.get("durationMs") as? Int;
 
       if (digits != null) {
-        playTone(digits)
+        playTone(digits, durationMs as Int)
       }
     }
     else {
@@ -38,18 +39,20 @@ class FlutterDtmfPlugin: MethodCallHandler {
     }
   }
 
-  private fun playTone(digits: String) {
-    val streamType = AudioManager.STREAM_MUSIC
-    val volume = 50
+  private fun playTone(digits: String, durationMs: Int) {
+    val streamType = AudioManager.STREAM_DTMF
+    val volume = 80
     val toneGenerator = ToneGenerator(streamType, volume)
-
-    for (i in digits.indices)
-    {
-      val toneType = getToneType(digits[i].toString())
-      val durationMs = 500
-      toneGenerator.startTone(toneType, durationMs)
-
-    }
+    Thread(object : Runnable {
+      override fun run() {
+        for (i in digits.indices)
+        {
+          val toneType = getToneType(digits[i].toString())
+          toneGenerator.startTone(toneType, durationMs)
+          Thread.sleep((durationMs + 80).toLong())
+        }
+      }
+    }).start()
   }
 
   private fun getToneType(digit: String): Int {

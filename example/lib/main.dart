@@ -17,9 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +27,13 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: RaisedButton(child: Text("Play DTMF"),onPressed: ()async {
-            await FlutterDtmf.playTone(digits: "#", samplingRate: 8000);
-          },)
-        ),
+            child: RaisedButton(
+          child: Text("Play DTMF"),
+          onPressed: () async {
+            await FlutterDtmf.playTone(
+                digits: "#1234", samplingRate: 8000, durationMs: 160);
+          },
+        )),
       ),
     );
   }

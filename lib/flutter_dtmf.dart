@@ -12,11 +12,14 @@ class FlutterDtmf {
   }
 
   static Future<void> playTone(
-      {@required String digits, double samplingRate}) async {
+      {@required String digits,
+      double samplingRate,
+      int durationMs = 500}) async {
     assert(digits != null);
     final Map<String, Object> args = <String, dynamic>{
       "digits": digits,
-      "samplingRate": samplingRate
+      "samplingRate": samplingRate,
+      "durationMs": durationMs
     };
     await _channel.invokeMethod('playTone', args);
   }

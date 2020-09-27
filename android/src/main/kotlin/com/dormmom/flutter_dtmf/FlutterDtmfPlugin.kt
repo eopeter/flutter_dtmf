@@ -2,6 +2,8 @@ package com.dormmom.flutter_dtmf
 
 import android.media.ToneGenerator
 import android.media.AudioManager
+import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -9,29 +11,42 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
-class FlutterDtmfPlugin: MethodCallHandler {
+class FlutterDtmfPlugin: FlutterPlugin, MethodCallHandler {
+  
+  override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+    setUpChannels(binding.binaryMessenger)
+  }
+  
   companion object {
+
+    var channel: MethodChannel? = null
+    
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "flutter_dtmf")
-      channel.setMethodCallHandler(FlutterDtmfPlugin())
+      setUpChannels(registrar.messenger())
+    }
+    
+    fun setUpChannels(messenger: BinaryMessenger){
+      channel = MethodChannel(messenger, "flutter_dtmf")
+      channel?.setMethodCallHandler(FlutterDtmfPlugin())
     }
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    var arguments = call.arguments as? Map<String, Object>
+    val arguments = call.arguments as? Map<*, *>
 
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     }
     else if (call.method == "playTone")
     {
-      var digits = arguments?.get("digits") as? String;
-      var samplingRate = arguments?.get("samplingRate") as? Float;
-      var durationMs = arguments?.get("durationMs") as? Int;
+      val digits = arguments?.get("digits") as? String;
+      val samplingRate = arguments?.get("samplingRate") as? Float;
+      val durationMs = arguments?.get("durationMs") as? Int;
 
       if (digits != null) {
         playTone(digits, durationMs as Int)
+        result.success(true)
       }
     }
     else {
@@ -76,6 +91,11 @@ class FlutterDtmfPlugin: MethodCallHandler {
     }
 
     return -1
+  }
+  
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+    channel?.setMethodCallHandler(null)
+    channel = null
   }
 
 

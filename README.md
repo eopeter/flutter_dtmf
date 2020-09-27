@@ -6,7 +6,7 @@ Generates DTFM Tones for Flutter Application. You can change the Sampling Rate t
 
 ```
 
-await FlutterDtmf.playTone(digits: "1234567890ABCD*#");
+await FlutterDtmf.playTone(digits: "1234567890ABCD*#", durationMs: 500);
 await FlutterDtmf.playTone(digits: "1", samplingRate: 80000.0);
 
 ```

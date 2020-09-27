@@ -30,12 +30,12 @@ public class SwiftFlutterDtmfPlugin: NSObject, FlutterPlugin {
             guard let digits = arguments?["digits"] as? String else {return}
             let samplingRate =  arguments?["samplingRate"] as? Double ?? 8000.0
             let durationMs =  arguments?["durationMs"] as? Int ?? 500
-            playTone(digits: digits, samplingRate: samplingRate, durationMs: durationMs)
+            playTone(digits: digits, samplingRate: samplingRate, durationMs: durationMs, flutterResult: result)
         }
 
     }
     
-    func playTone(digits: String, samplingRate: Double, durationMs: Int)
+    func playTone(digits: String, samplingRate: Double, durationMs: Int, flutterResult: @escaping FlutterResult)
     {
        
         let _sampleRate = Float(samplingRate)
@@ -66,12 +66,13 @@ public class SwiftFlutterDtmfPlugin: NSObject, FlutterPlugin {
             do {
                 try _engine.start()
             } catch let error as NSError {
+                flutterResult(false)
                 print("Engine start failed - \(error)")
             }
             
             _player.scheduleBuffer(buffer, at:nil,completionHandler:nil)
             _player.play()
-
+            flutterResult(true)
     }
   }
   

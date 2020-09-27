@@ -1,3 +1,6 @@
+## 1.0.0
+* Add License and Major Version Name
+
 ## 0.0.4
 * Ability to set tone duration
 

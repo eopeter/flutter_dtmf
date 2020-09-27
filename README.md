@@ -1,6 +1,6 @@
 # flutter_dtmf
 
-Generates DTFM Tones for Flutter Application. You can change the Sampling Rate to get a different output for iOS.
+Generates DTFM Tones for Flutter Application. This can be used in VOIP applications or other applications that need to generate DTMF Tones.
 
 ## Usage
 

@@ -1,3 +1,6 @@
+## 1.0.2
+* Fix example
+
 ## 1.0.1
 * Migrate to Null Safety
 

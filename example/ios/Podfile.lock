@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_dtmf (0.0.3):
+  - flutter_dtmf (1.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_dtmf/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_dtmf: 9a96160f1d38f96adf7293b1cde10f71c813c4ac
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_dtmf: d86aaec3002a172abba756dc179aaf786bb82215
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

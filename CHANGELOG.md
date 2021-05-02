@@ -1,3 +1,6 @@
+## 1.0.1
+* Migrate to Null Safety
+
 ## 1.0.0
 * Add License and Major Version Name
 

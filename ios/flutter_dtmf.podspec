@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_dtmf'
-  s.version          = '0.0.3'
+  s.version          = '1.0.1'
   s.summary          = 'Generates DTFM Tones for Flutter Application'
   s.description      = <<-DESC
 Generates DTFM Tones for Flutter Application

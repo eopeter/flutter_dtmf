@@ -8,12 +8,11 @@ class FlutterDtmf {
   /// Plays the DTMF Tones Associated with the [digits]. Each tone is played for the duration [durationMs] in milliseconds
   /// Returns true if tone played successfully
   ///
-  static Future<bool> playTone(
-      {@required String digits,
-      double samplingRate,
+  static Future<bool?> playTone(
+      {required String digits,
+      double? samplingRate,
       int durationMs = 500}) async {
-    assert(digits != null);
-    final Map<String, Object> args = <String, dynamic>{
+    final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,
       "samplingRate": samplingRate,
       "durationMs": durationMs

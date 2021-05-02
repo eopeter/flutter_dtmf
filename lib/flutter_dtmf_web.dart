@@ -19,7 +19,7 @@ class FlutterDtmfPlugin {
     switch (call.method) {
       case 'playTone':
         final String digits = call.arguments['digits'];
-        final int durationMs = call.arguments['durationMs'];
+        final int? durationMs = call.arguments['durationMs'];
         return _playTone(digits, durationMs);
       default:
         throw PlatformException(
@@ -29,28 +29,12 @@ class FlutterDtmfPlugin {
     }
   }
 
-  bool _playTone(String digits, int durationMs) {
+  bool _playTone(String digits, int? durationMs) {
     var dtmf = DTMF();
     dtmf.playTone(digits, durationMs);
     return true;
   }
 
-  bool _printHello(){
-    var header = html.querySelector('#header');
-    header.text = "Start";
-
-    js.context.callMethod('alert',['hello world']);
-
-    var object = js.JsObject(js.context['Object']);
-    object['greeting'] = 'Hello';
-    object['greet'] = (name) => "${object['greeting']} $name";
-    var message = object.callMethod('greet', ['JavaScript']);
-    js.context['console'].callMethod('log', [message]);
-
-
-    header.text = message;
-
-  }
 }
 
 
@@ -76,15 +60,15 @@ class DTMF {
   };
 
 
-  void playTone(String digits, int durationMs) {
+  void playTone(String digits, int? durationMs) {
     dynamic audioContext = js.context.callMethod('AudioContext',
         ['new (window.AudioContext || window.webkitAudioContext)()']);
 
     for (var i in digits.split('')) {
       var tone = Tone(
           context: audioContext,
-          frequency1: allFrequencies[i][0],
-          frequency2: allFrequencies[i][1]);
+          frequency1: allFrequencies[i]![0],
+          frequency2: allFrequencies[i]![1]);
       if (tone.status == 0) {
         tone.start();
         tone.stop();
@@ -95,8 +79,8 @@ class DTMF {
 
 class Tone {
   dynamic context;
-  int frequency1;
-  int frequency2;
+  int? frequency1;
+  int? frequency2;
   int status = 0;
   dynamic _osc1;
   dynamic _osc2;

@@ -5,15 +5,16 @@ import 'dart:js' as js;
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+/// DtmfPlugin is the main plugin class
 class DtmfPlugin {
   static void registerWith(Registrar registrar) {
     final MethodChannel channel = MethodChannel(
-        'plugins.flutter.io/url_launcher',
-        const StandardMethodCodec());
+        'plugins.flutter.io/url_launcher', const StandardMethodCodec());
     final DtmfPlugin instance = DtmfPlugin();
     channel.setMethodCallHandler(instance.handleMethodCall);
   }
 
+  /// handleMethodCall processes calls for the platform
   Future<dynamic> handleMethodCall(MethodCall call) async {
     switch (call.method) {
       case 'playTone':
@@ -33,12 +34,9 @@ class DtmfPlugin {
     dtmf.playTone(digits, durationMs);
     return true;
   }
-
 }
 
-
 class DTMF {
-
   var allFrequencies = {
     "1": [697, 1209],
     "2": [697, 1336],
@@ -58,8 +56,10 @@ class DTMF {
     "D": [941, 1633],
   };
 
-
-  void playTone(String digits, int? durationMs) {
+  /// Plays the DTMF Tones Associated with the [digits]. Each tone is played for the duration [durationMs] in milliseconds
+  /// Returns true if tone played successfully
+  ///
+  bool playTone(String digits, int? durationMs) {
     dynamic audioContext = js.context.callMethod('AudioContext',
         ['new (window.AudioContext || window.webkitAudioContext)()']);
 
@@ -71,11 +71,14 @@ class DTMF {
       if (tone.status == 0) {
         tone.start();
         tone.stop();
+        return true;
       }
     }
+
+    return false;
   }
 }
-
+// Tone plays a DTMF Tone given a frequency
 class Tone {
   dynamic context;
   int? frequency1;
@@ -86,6 +89,7 @@ class Tone {
   dynamic _gainNode;
   dynamic _filter;
 
+  /// constructor
   Tone({this.context, this.frequency1, this.frequency2}) {
     _osc1 = context.createOscillator();
     _osc2 = context.createOscillator();
@@ -105,13 +109,14 @@ class Tone {
     _gainNode.connect(_filter);
     _filter.connect(context.destination);
   }
-
+  /// start plays the tone
   void start() {
     _osc1.start(0);
     _osc2.start(0);
     this.status = 1;
   }
 
+  /// stop terminates playing the tone
   void stop() {
     _osc1.stop(0);
     _osc2.stop(0);
@@ -199,4 +204,3 @@ class Tone {
 }
 
  */
-

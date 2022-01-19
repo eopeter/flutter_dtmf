@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-
+/// Dtmf enables playing DTMF tones crossplatform
 class Dtmf {
   static const MethodChannel _channel = const MethodChannel('flutter_dtmf');
 

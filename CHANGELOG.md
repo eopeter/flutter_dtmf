@@ -1,3 +1,6 @@
+## 2.0.1
+* Fix Kotlin Version
+
 ## 2.0.0
 * Breaking Changes
 * Package Rename (FlutterDmtf -> Dtmf)

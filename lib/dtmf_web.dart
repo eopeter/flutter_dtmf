@@ -5,13 +5,12 @@ import 'dart:js' as js;
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-class FlutterDtmfPlugin {
+class DtmfPlugin {
   static void registerWith(Registrar registrar) {
     final MethodChannel channel = MethodChannel(
         'plugins.flutter.io/url_launcher',
-        const StandardMethodCodec(),
-        registrar.messenger);
-    final FlutterDtmfPlugin instance = FlutterDtmfPlugin();
+        const StandardMethodCodec());
+    final DtmfPlugin instance = DtmfPlugin();
     channel.setMethodCallHandler(instance.handleMethodCall);
   }
 

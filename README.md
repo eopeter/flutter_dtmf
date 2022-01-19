@@ -6,8 +6,8 @@ Generates DTFM Tones for Flutter Application. This can be used in VOIP applicati
 
 ```
 
-await FlutterDtmf.playTone(digits: "1234567890ABCD*#", durationMs: 500);
-await FlutterDtmf.playTone(digits: "1", samplingRate: 80000.0);
+await Dtmf.playTone(digits: "1234567890ABCD*#", durationMs: 500);
+await Dtmf.playTone(digits: "1", samplingRate: 80000.0);
 
 ```
 

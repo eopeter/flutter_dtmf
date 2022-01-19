@@ -3,35 +3,50 @@
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b577d10b-b02d-4bc3-9d8c-8dea35df403e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/kotlin/com/dormmom/flutter_dtmf/FlutterDtmfPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/kotlin/com/eopeter/flutter_dtmf/DtmfPlugin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Flutter/Flutter.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Flutter/Flutter.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/ios/flutter_dtmf.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/ios/flutter_dtmf.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/dormmom/flutter_dtmf_example/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/main/kotlin/com/eopeter/dtmf_example/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Flutter/Flutter.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/Flutter.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_dtmf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_dtmf.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/flutter_dtmf.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/flutter_dtmf.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_dtmf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dtmf.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterDtmfPlugin.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/DtmfPlugin.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterDtmfPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/DtmfPlugin.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftFlutterDtmfPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftDtmfPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_dtmf.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dtmf.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_dtmf_web.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dtmf_web.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/flutter_dtmf_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/dtmf_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/eopeter/.android/avd/Pixel_6_Pro_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -63,6 +78,7 @@
       <recent name="$PROJECT_DIR$/ios/Classes" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -88,26 +104,9 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="1638" height="415" key="GridCell.Tab.0.bottom" timestamp="1619937244862">
-      <screen x="0" y="25" width="1680" height="958" />
-    </state>
-    <state width="1638" height="415" key="GridCell.Tab.0.bottom/0.25.1680.958@0.25.1680.958" timestamp="1619937244862" />
-    <state width="1638" height="315" key="GridCell.Tab.0.bottom/0.25.1680.959@0.25.1680.959" timestamp="1619936381671" />
-    <state width="1638" height="415" key="GridCell.Tab.0.center" timestamp="1619937244861">
-      <screen x="0" y="25" width="1680" height="958" />
-    </state>
-    <state width="1638" height="415" key="GridCell.Tab.0.center/0.25.1680.958@0.25.1680.958" timestamp="1619937244861" />
-    <state width="1638" height="315" key="GridCell.Tab.0.center/0.25.1680.959@0.25.1680.959" timestamp="1619936381671" />
-    <state width="1638" height="415" key="GridCell.Tab.0.left" timestamp="1619937244861">
-      <screen x="0" y="25" width="1680" height="958" />
-    </state>
-    <state width="1638" height="415" key="GridCell.Tab.0.left/0.25.1680.958@0.25.1680.958" timestamp="1619937244861" />
-    <state width="1638" height="315" key="GridCell.Tab.0.left/0.25.1680.959@0.25.1680.959" timestamp="1619936381671" />
-    <state width="1638" height="415" key="GridCell.Tab.0.right" timestamp="1619937244861">
-      <screen x="0" y="25" width="1680" height="958" />
-    </state>
-    <state width="1638" height="415" key="GridCell.Tab.0.right/0.25.1680.958@0.25.1680.958" timestamp="1619937244861" />
-    <state width="1638" height="315" key="GridCell.Tab.0.right/0.25.1680.959@0.25.1680.959" timestamp="1619936381671" />
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_dtmf" />
+    </ignored-roots>
   </component>
 </project>

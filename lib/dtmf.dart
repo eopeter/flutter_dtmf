@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FlutterDtmf {
+class Dtmf {
   static const MethodChannel _channel = const MethodChannel('flutter_dtmf');
 
   /// Plays the DTMF Tones Associated with the [digits]. Each tone is played for the duration [durationMs] in milliseconds

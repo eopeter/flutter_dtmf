@@ -1,4 +1,4 @@
-group 'com.dormmom.flutter_dtmf'
+group 'com.eopeter.flutter_dtmf'
 version '1.0-SNAPSHOT'
 
 buildscript {

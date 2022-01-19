@@ -1,3 +1,8 @@
+## 2.0.0
+* Breaking Changes
+* Package Rename (FlutterDmtf -> Dtmf)
+* Fix unknown char crash in Android
+
 ## 1.0.2
 * Fix example
 

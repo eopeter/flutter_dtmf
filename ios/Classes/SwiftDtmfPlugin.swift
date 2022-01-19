@@ -3,7 +3,7 @@ import UIKit
 import AVFoundation
 import CallKit
 
-public class SwiftFlutterDtmfPlugin: NSObject, FlutterPlugin {
+public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
 
     var _engine: AVAudioEngine
     var _player:AVAudioPlayerNode
@@ -19,7 +19,7 @@ public class SwiftFlutterDtmfPlugin: NSObject, FlutterPlugin {
     
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "flutter_dtmf", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterDtmfPlugin()
+    let instance = SwiftDtmfPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
     

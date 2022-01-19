@@ -1,8 +1,8 @@
-#import "FlutterDtmfPlugin.h"
+#import "DtmfPlugin.h"
 #import <flutter_dtmf/flutter_dtmf-Swift.h>
 
-@implementation FlutterDtmfPlugin
+@implementation DtmfPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterDtmfPlugin registerWithRegistrar:registrar];
+  [SwiftDtmfPlugin registerWithRegistrar:registrar];
 }
 @end

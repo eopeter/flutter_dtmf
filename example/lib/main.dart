@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:flutter_dtmf/flutter_dtmf.dart';
+import 'package:flutter_dtmf/dtmf.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,11 +24,11 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-            child: RaisedButton(
+            child: ElevatedButton(
           child: Text("Play DTMF"),
           onPressed: () async {
-            await FlutterDtmf.playTone(
-                digits: "#1234", samplingRate: 8000, durationMs: 160);
+            await Dtmf.playTone(
+                digits: "#1234567890*", samplingRate: 8000, durationMs: 160);
           },
         )),
       ),

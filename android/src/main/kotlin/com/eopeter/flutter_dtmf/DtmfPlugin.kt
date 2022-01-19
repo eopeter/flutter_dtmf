@@ -1,4 +1,4 @@
-package com.dormmom.flutter_dtmf
+package com.eopeter.flutter_dtmf
 
 import android.media.ToneGenerator
 import android.media.AudioManager
@@ -11,7 +11,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
-class FlutterDtmfPlugin: FlutterPlugin, MethodCallHandler {
+class DtmfPlugin: FlutterPlugin, MethodCallHandler {
   
   override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     setUpChannels(binding.binaryMessenger)
@@ -28,7 +28,7 @@ class FlutterDtmfPlugin: FlutterPlugin, MethodCallHandler {
     
     fun setUpChannels(messenger: BinaryMessenger){
       channel = MethodChannel(messenger, "flutter_dtmf")
-      channel?.setMethodCallHandler(FlutterDtmfPlugin())
+      channel?.setMethodCallHandler(DtmfPlugin())
     }
   }
 
@@ -45,7 +45,7 @@ class FlutterDtmfPlugin: FlutterPlugin, MethodCallHandler {
       val durationMs = arguments?.get("durationMs") as? Int;
 
       if (digits != null) {
-        playTone(digits, durationMs as Int)
+        playTone(digits.trim(), durationMs as Int)
         result.success(true)
       }
     }
@@ -63,7 +63,8 @@ class FlutterDtmfPlugin: FlutterPlugin, MethodCallHandler {
         for (i in digits.indices)
         {
           val toneType = getToneType(digits[i].toString())
-          toneGenerator.startTone(toneType, durationMs)
+          if(toneType != -1)
+            toneGenerator.startTone(toneType, durationMs)
           Thread.sleep((durationMs + 80).toLong())
         }
       }

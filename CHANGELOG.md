@@ -1,3 +1,10 @@
+## 3.0.0
+* Add Volume Control
+* API Changes
+
+## 2.0.2
+* Android Gradle Upgrade
+
 ## 2.0.1
 * Fix Kotlin Version
 

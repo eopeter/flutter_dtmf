@@ -1,7 +1,9 @@
 package com.eopeter.flutter_dtmf
 
+import android.content.Context
 import android.media.ToneGenerator
 import android.media.AudioManager
+import androidx.core.content.ContextCompat.getSystemService
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
@@ -12,15 +14,19 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
 class DtmfPlugin: FlutterPlugin, MethodCallHandler {
-  
+
   override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     setUpChannels(binding.binaryMessenger)
+    applicationContext = binding.applicationContext
+    audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
   }
   
   companion object {
 
     var channel: MethodChannel? = null
-    
+    private lateinit var applicationContext: Context
+    private lateinit var audioManager: AudioManager
+
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       setUpChannels(registrar.messenger())
@@ -40,12 +46,13 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
     }
     else if (call.method == "playTone")
     {
-      val digits = arguments?.get("digits") as? String;
-      val samplingRate = arguments?.get("samplingRate") as? Float;
-      val durationMs = arguments?.get("durationMs") as? Int;
+      val digits = arguments?.get("digits") as? String
+      val samplingRate = arguments?.get("samplingRate") as? Float
+      val durationMs = arguments?.get("durationMs") as? Int
+      val volume = arguments?.get("volume") as? Double
 
       if (digits != null) {
-        playTone(digits.trim(), durationMs as Int)
+        playTone(digits.trim(), durationMs as Int, volume)
         result.success(true)
       }
     }
@@ -54,10 +61,18 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
     }
   }
 
-  private fun playTone(digits: String, durationMs: Int) {
+  private fun playTone(digits: String, durationMs: Int, volume: Double?) {
     val streamType = AudioManager.STREAM_DTMF
-    val volume = 80
-    val toneGenerator = ToneGenerator(streamType, volume)
+    val maxVolume = audioManager.getStreamMaxVolume(streamType)
+    var targetVolume = audioManager.getStreamVolume(streamType).toDouble()
+    if (volume != null) {
+      // Set the volume level as a percentage
+      targetVolume = volume * maxVolume
+    }
+    audioManager.setStreamVolume(streamType, targetVolume.toInt(), 0)
+
+    // Adjust volume using AudioManager
+    val toneGenerator = ToneGenerator(streamType, targetVolume.toInt())
     Thread(object : Runnable {
       override fun run() {
         for (i in digits.indices)

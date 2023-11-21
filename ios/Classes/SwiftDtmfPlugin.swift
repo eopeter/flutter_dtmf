@@ -30,12 +30,13 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
             guard let digits = arguments?["digits"] as? String else {return}
             let samplingRate =  arguments?["samplingRate"] as? Double ?? 8000.0
             let durationMs =  arguments?["durationMs"] as? Int ?? 500
-            playTone(digits: digits, samplingRate: samplingRate, durationMs: durationMs, flutterResult: result)
+            let volume =  arguments?["volume"] as? Double
+            playTone(digits: digits, volume: volume, samplingRate: samplingRate, durationMs: durationMs, flutterResult: result)
         }
 
     }
     
-    func playTone(digits: String, samplingRate: Double, durationMs: Int, flutterResult: @escaping FlutterResult)
+    func playTone(digits: String, volume: Double?, samplingRate: Double, durationMs: Int, flutterResult: @escaping FlutterResult)
     {
        
         let _sampleRate = Float(samplingRate)
@@ -71,6 +72,9 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
             }
             
             _player.scheduleBuffer(buffer, at:nil,completionHandler:nil)
+            if (volume != nil) {
+                _player.volume = Float(volume!)
+            }
             _player.play()
             flutterResult(true)
     }

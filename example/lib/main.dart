@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dtmf/dtmf.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -28,7 +30,10 @@ class _MyAppState extends State<MyApp> {
           child: Text("Play DTMF"),
           onPressed: () async {
             await Dtmf.playTone(
-                digits: "#1234567890*", samplingRate: 8000, durationMs: 160);
+                digits: "#1234567890*",
+                samplingRate: 8000,
+                durationMs: 160,
+                volume: 0.1);
           },
         )),
       ),

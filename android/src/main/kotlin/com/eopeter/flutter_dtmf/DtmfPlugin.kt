@@ -81,6 +81,7 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
           if(toneType != -1)
             toneGenerator.startTone(toneType, durationMs)
           Thread.sleep((durationMs + 80).toLong())
+          toneGenerator.release();
         }
       }
     }).start()

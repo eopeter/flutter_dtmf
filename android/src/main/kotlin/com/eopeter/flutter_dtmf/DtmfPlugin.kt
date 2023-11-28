@@ -63,7 +63,7 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
 
   private fun playTone(digits: String, durationMs: Int, volume: Double?) {
     val streamType = AudioManager.STREAM_DTMF
-    val maxVolume = audioManager.getStreamMaxVolume(streamType)
+    val maxVolume = 100 //Set max volume at the highest possible
     var targetVolume = audioManager.getStreamVolume(streamType).toDouble()
     if (volume != null) {
       // Set the volume level as a percentage

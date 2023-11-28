@@ -1,3 +1,6 @@
+## 3.0.1
+* Fix Android Tone Generator Crash at HF
+
 ## 3.0.0
 * Add Volume Control
 * API Changes

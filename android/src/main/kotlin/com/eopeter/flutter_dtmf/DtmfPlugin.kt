@@ -80,7 +80,6 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
             return;
         }
 
-
         if (volume != null) {
             val streamType = AudioManager.STREAM_DTMF
             val maxVolume = audioManager.getStreamMaxVolume(streamType)

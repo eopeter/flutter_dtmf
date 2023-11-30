@@ -1,3 +1,6 @@
+## 3.0.2
+* Fix Android Volume System Default
+
 ## 3.0.1
 * Fix Android Tone Generator Crash at HF
 

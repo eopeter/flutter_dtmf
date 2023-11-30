@@ -18,6 +18,9 @@ class Dtmf {
     if (samplingRate == null) {
       samplingRate = 500;
     }
+    if (durationMs == null) {
+      durationMs = 160;
+    }
     final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,
       "samplingRate": samplingRate,

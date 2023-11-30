@@ -3,6 +3,8 @@ package com.eopeter.flutter_dtmf
 import android.content.Context
 import android.media.ToneGenerator
 import android.media.AudioManager
+import android.provider.Settings
+import android.util.Log
 import androidx.core.content.ContextCompat.getSystemService
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.BinaryMessenger
@@ -13,12 +15,13 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
-class DtmfPlugin: FlutterPlugin, MethodCallHandler {
+class DtmfPlugin : FlutterPlugin, MethodCallHandler {
 
   override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     setUpChannels(binding.binaryMessenger)
     applicationContext = binding.applicationContext
     audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    toneGenerator = ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME / 2)
   }
   
   companion object {
@@ -26,6 +29,7 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
     var channel: MethodChannel? = null
     private lateinit var applicationContext: Context
     private lateinit var audioManager: AudioManager
+    private var toneGenerator: ToneGenerator? = null
 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
@@ -61,31 +65,41 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
     }
   }
 
-  private fun playTone(digits: String, durationMs: Int, volume: Double?) {
-    val streamType = AudioManager.STREAM_DTMF
-    val maxVolume = audioManager.getStreamMaxVolume(streamType)
-    var targetVolume = audioManager.getStreamVolume(streamType).toDouble()
-    if (volume != null) {
-      // Set the volume level as a percentage
-      targetVolume = volume * maxVolume
-    }
-    audioManager.setStreamVolume(streamType, targetVolume.toInt(), 0)
+    private fun playTone(digits: String, durationMs: Int, volume: Double?) {
+        var isDtmfToneDisabled = false;
 
-    // Adjust volume using AudioManager
-    val toneGenerator = ToneGenerator(streamType, targetVolume.toInt())
-    Thread(object : Runnable {
-      override fun run() {
-        for (i in digits.indices)
-        {
-          val toneType = getToneType(digits[i].toString())
-          if(toneType != -1)
-            toneGenerator.startTone(toneType, durationMs)
-          Thread.sleep((durationMs + 80).toLong())
-          toneGenerator.release();
+        try {
+            isDtmfToneDisabled = Settings.System.getInt(
+                applicationContext.contentResolver,
+                Settings.System.DTMF_TONE_WHEN_DIALING, 1
+            ) == 0;
+        } catch (e: Settings.SettingNotFoundException) {
+            Log.e("DTMFPlugin", e.toString())
         }
-      }
-    }).start()
-  }
+        if (toneGenerator == null || isDtmfToneDisabled) {
+            return;
+        }
+
+
+        if (volume != null) {
+            val streamType = AudioManager.STREAM_DTMF
+            val maxVolume = audioManager.getStreamMaxVolume(streamType)
+            // Set the volume level as a percentage
+            var targetVolume = volume * maxVolume
+            audioManager.setStreamVolume(streamType, targetVolume.toInt(), 0)
+            // Adjust volume using AudioManager
+            toneGenerator = ToneGenerator(streamType, targetVolume.toInt())
+        }
+
+        Thread {
+            for (i in digits.indices) {
+                val toneType = getToneType(digits[i].toString())
+                if (toneType != -1)
+                    toneGenerator?.startTone(toneType, durationMs)
+                Thread.sleep((durationMs + 80).toLong())
+            }
+        }.start()
+    }
 
   private fun getToneType(digit: String): Int {
     when(digit) {
@@ -113,6 +127,9 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel?.setMethodCallHandler(null)
     channel = null
+      if(toneGenerator!= null){
+          toneGenerator?.release()
+      }
   }
 
 

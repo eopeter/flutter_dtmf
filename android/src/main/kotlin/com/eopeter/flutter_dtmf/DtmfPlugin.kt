@@ -21,7 +21,7 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
     setUpChannels(binding.binaryMessenger)
     applicationContext = binding.applicationContext
     audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-    toneGenerator = ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME / 2)
+    toneGenerator = ToneGenerator(AudioManager.STREAM_DTMF, ToneGenerator.MAX_VOLUME )
   }
   
   companion object {
@@ -82,7 +82,7 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
 
         if (volume != null) {
             val streamType = AudioManager.STREAM_DTMF
-            val maxVolume = audioManager.getStreamMaxVolume(streamType)
+            val maxVolume = 100
             // Set the volume level as a percentage
             var targetVolume = volume * maxVolume
             audioManager.setStreamVolume(streamType, targetVolume.toInt(), 0)

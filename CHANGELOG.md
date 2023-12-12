@@ -1,4 +1,9 @@
 ## 3.0.2
+* Revert Fix introduced in 3.0.1 which has been deleted in 3.0.2
+* Fix issue  : "AUDIO_OUTPUT_FLAG_FAST denied by server"
+* Added the option to force play sounds, even if DTMF sound are disabled in settings
+
+## 3.0.2
 * Fix Android Volume System Default
 
 ## 3.0.1

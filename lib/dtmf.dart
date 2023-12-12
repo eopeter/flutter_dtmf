@@ -12,6 +12,7 @@ class Dtmf {
   /// Set ignoreDtmfSystemSettings to true, if you want to play sound even when dtmf sounds are disable on the device (ex : on a tablet)
   /// Set forceMaxVolume to true if you want to increase max volume to the max volume of the phone, (and not just max volume of DTMF sounds).
   /// If you force max Volume to true, you can still control the volume with the volume atribute.
+  ///
   static Future<bool?> playTone(
       {required String digits,
       int durationMs =160,

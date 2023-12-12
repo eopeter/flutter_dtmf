@@ -1,5 +1,4 @@
 package com.eopeter.flutter_dtmf
-
 import android.content.Context
 import android.media.ToneGenerator
 import android.media.AudioManager
@@ -14,28 +13,22 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-
 class DtmfPlugin : FlutterPlugin, MethodCallHandler {
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         setUpChannels(binding.binaryMessenger)
         applicationContext = binding.applicationContext
         audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        //toneGenerator = ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME / 2)
     }
 
     companion object {
-
         var channel: MethodChannel? = null
         private lateinit var applicationContext: Context
         private lateinit var audioManager: AudioManager
-        //private var toneGenerator: ToneGenerator? = null
-
         @JvmStatic
         fun registerWith(registrar: Registrar) {
             setUpChannels(registrar.messenger())
         }
-
         fun setUpChannels(messenger: BinaryMessenger) {
             channel = MethodChannel(messenger, "flutter_dtmf")
             channel?.setMethodCallHandler(DtmfPlugin())
@@ -97,11 +90,10 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
             }
         }
 
-
         val streamType = AudioManager.STREAM_DTMF
 
         var maxVolume = audioManager.getStreamMaxVolume(streamType)
-        if(forceMaxVolume){
+        if (forceMaxVolume) {
             maxVolume = 100
         }
         // Set the volume level as a percentage
@@ -146,13 +138,9 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
 
         return -1
     }
-
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel?.setMethodCallHandler(null)
         channel = null
-        /*if(toneGenerator!= null){
-            toneGenerator?.release()
-        }*/
     }
 
 

@@ -54,9 +54,10 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
       val samplingRate = arguments?.get("samplingRate") as? Float
       val durationMs = arguments?.get("durationMs") as? Int
       val volume = arguments?.get("volume") as? Double
+        val ignoreDtmfSettings = arguments?.get("ignoreDtmfSettings") as Boolean
 
       if (digits != null) {
-        playTone(digits.trim(), durationMs as Int, volume)
+        playTone(digits.trim(), durationMs as Int, volume, ignoreDtmfSettings )
         result.success(true)
       }
     }
@@ -65,19 +66,22 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
     }
   }
 
-    private fun playTone(digits: String, durationMs: Int, volume: Double?) {
+    private fun playTone(digits: String, durationMs: Int, volume: Double?, ignoreDtmfSettings:Boolean) {
         var isDtmfToneDisabled = false;
 
-        try {
-            isDtmfToneDisabled = Settings.System.getInt(
-                applicationContext.contentResolver,
-                Settings.System.DTMF_TONE_WHEN_DIALING, 1
-            ) == 0;
-        } catch (e: Settings.SettingNotFoundException) {
-            Log.e("DTMFPlugin", e.toString())
-        }
-        if (toneGenerator == null || isDtmfToneDisabled) {
-            return;
+        if(!ignoreDtmfSettings){
+            try {
+                isDtmfToneDisabled = Settings.System.getInt(
+                        applicationContext.contentResolver,
+                        Settings.System.DTMF_TONE_WHEN_DIALING, 1
+                ) == 0;
+            } catch (e: Settings.SettingNotFoundException) {
+                Log.e("DTMFPlugin", e.toString())
+            }
+            if (toneGenerator == null || isDtmfToneDisabled) {
+                Log.i("DTMFPlugin", "No sound is played : Dtmf Tone is disabled on device and not ignored.")
+                return;
+            }
         }
 
         if (volume != null) {
@@ -124,8 +128,10 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
   }
   
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-    channel?.setMethodCallHandler(null)
+      Log.d("DTMFPlugin","onDetachedFromEngine")
+      channel?.setMethodCallHandler(null)
     channel = null
+
       if(toneGenerator!= null){
           toneGenerator?.release()
       }

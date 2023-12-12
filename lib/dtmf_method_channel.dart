@@ -19,12 +19,14 @@ class MethodChannelDtmf extends DtmfPlatform {
       {required String digits,
       int? durationMs,
       double? samplingRate,
-      double? volume}) async {
+      double? volume,
+        bool?  ignoreDtmfSettings}) async {
     final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,
       "samplingRate": samplingRate,
       "durationMs": durationMs,
-      "volume": volume
+      "volume": volume,
+      "ignoreDtmfSettings":ignoreDtmfSettings
     };
     return await methodChannel.invokeMethod('playTone', args);
   }

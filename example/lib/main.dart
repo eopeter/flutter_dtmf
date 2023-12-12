@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
                 digits: "#1234567890*",
                 samplingRate: 8000,
                 durationMs: 160,
+                ignoreDtmfSettings: true,
                 volume: 0.8);
           },
         )),

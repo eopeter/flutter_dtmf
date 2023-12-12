@@ -29,7 +29,8 @@ abstract class DtmfPlatform extends PlatformInterface {
       {required String digits,
       int? durationMs,
       double? samplingRate,
-      double? volume}) {
+      double? volume,
+      bool? ignoreDtmfSettings}) {
     throw UnimplementedError('playTone() has not been implemented.');
   }
 }

@@ -5,3 +5,12 @@
 .pub/
 
 build/
+
+*.lock
+
+example/.flutter-plugins-dependencies
+
+*.iml
+
+
+.idea/

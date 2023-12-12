@@ -17,14 +17,18 @@ class MethodChannelDtmf extends DtmfPlatform {
   @override
   Future<bool> playTone(
       {required String digits,
-      int? durationMs,
-      double? samplingRate,
-      double? volume}) async {
+      int durationMs=160,
+      double samplingRate=500,
+      double volume=1,
+      bool ignoreDtmfSystemSettings = false,
+      bool forceMaxVolume = false}) async {
     final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,
       "samplingRate": samplingRate,
       "durationMs": durationMs,
-      "volume": volume
+      "volume": volume,
+      "ignoreDtmfSystemSettings":ignoreDtmfSystemSettings,
+      "forceMaxVolume":forceMaxVolume
     };
     return await methodChannel.invokeMethod('playTone', args);
   }

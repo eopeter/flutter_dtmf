@@ -4,24 +4,35 @@ import AVFoundation
 import CallKit
 
 public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
-
+    
     var _engine: AVAudioEngine
     var _player:AVAudioPlayerNode
     var _mixer: AVAudioMixerNode
     
-  public override init() {
-    _engine = AVAudioEngine();
-    _player = AVAudioPlayerNode()
-    _mixer = _engine.mainMixerNode;
-    
-    super.init()
+    public override init() {
+        _engine = AVAudioEngine();
+        _player = AVAudioPlayerNode()
+        _mixer = _engine.mainMixerNode;
+        
+        super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
     }
     
-  public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_dtmf", binaryMessenger: registrar.messenger())
-    let instance = SwiftDtmfPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
-  }
+    public static func register(with registrar: FlutterPluginRegistrar) {
+        let channel = FlutterMethodChannel(name: "flutter_dtmf", binaryMessenger: registrar.messenger())
+        let instance = SwiftDtmfPlugin()
+        registrar.addMethodCallDelegate(instance, channel: channel)
+    }
+    
+    @objc func handleRouteChange(notification: Notification){
+      _player.stop()
+      if(_engine.isRunning){_engine.disconnectNodeOutput(_player)}
+      _engine.stop()
+      _engine = AVAudioEngine();
+      _player = AVAudioPlayerNode()
+      _mixer = _engine.mainMixerNode;
+    }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         let arguments = call.arguments as? NSDictionary
@@ -33,14 +44,14 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
             let volume =  arguments?["volume"] as? Double
             playTone(digits: digits, volume: volume, samplingRate: samplingRate, durationMs: durationMs, flutterResult: result)
         }
-
+        
     }
     
     func playTone(digits: String, volume: Double?, samplingRate: Double, durationMs: Int, flutterResult: @escaping FlutterResult)
     {
-       
+        
         let _sampleRate = Float(samplingRate)
-
+        
         if let tones = DTMF.tonesForString(digits) {
             let audioFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(_sampleRate), channels: 2, interleaved: false)!
             
@@ -69,6 +80,7 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
             } catch let error as NSError {
                 flutterResult(false)
                 print("Engine start failed - \(error)")
+                return
             }
             
             _player.scheduleBuffer(buffer, at:nil,completionHandler:nil)
@@ -77,7 +89,7 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
             }
             _player.play()
             flutterResult(true)
+        }
     }
-  }
-  
+    
 }

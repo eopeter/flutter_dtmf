@@ -18,6 +18,12 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
     }
     
   public static func register(with registrar: FlutterPluginRegistrar) {
+    do {
+      try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
+      try AVAudioSession.sharedInstance().setActive(true)
+    } catch let error as NSError {
+        print("AVAudioSession setCategory failed - \(error)")
+    }
     let channel = FlutterMethodChannel(name: "flutter_dtmf", binaryMessenger: registrar.messenger())
     let instance = SwiftDtmfPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)

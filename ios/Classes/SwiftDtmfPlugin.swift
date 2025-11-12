@@ -8,6 +8,7 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
     var _engine: AVAudioEngine
     var _player:AVAudioPlayerNode
     var _mixer: AVAudioMixerNode
+    var _playCount = 0
     
     public override init() {
         _engine = AVAudioEngine();
@@ -83,13 +84,36 @@ public class SwiftDtmfPlugin: NSObject, FlutterPlugin {
                 return
             }
             
-            _player.scheduleBuffer(buffer, at:nil,completionHandler:nil)
+            _player.scheduleBuffer(buffer, at:nil,completionCallbackType: .dataPlayedBack){  [weak self] _ in
+                Task{ @MainActor in
+                    self?.stopTone()
+                }
+            }
             if (volume != nil) {
                 _player.volume = Float(volume!)
             }
             _player.play()
+            _playCount += 1
             flutterResult(true)
         }
     }
     
+    private func stopTone(){
+        _playCount -= 1
+        if _playCount > 0 {
+            return
+        }
+        
+        _player.stop()
+        if _engine.isRunning {
+            _engine.stop()
+        }
+        do{
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.ambient, mode: .default, options: [])
+            try session.setActive(false, options: [.notifyOthersOnDeactivation])
+        }catch{
+            print("Deactivate failed - \(error)")
+        }
+    }
 }

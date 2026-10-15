@@ -1,0 +1,31 @@
+buildscript {
+    extra["kotlin_version"] = "2.4.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:9.1.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlin_version"]}")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = file("../build")
+subprojects {
+    project.buildDir = file("${rootProject.buildDir}/${project.name}")
+}
+subprojects {
+    evaluationDependsOn(":app")
+}
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.buildDir)
+}

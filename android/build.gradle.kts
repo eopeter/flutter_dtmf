@@ -24,7 +24,7 @@ android {
     }
 
     lint {
-        isCheckReleaseBuilds = false
+        checkReleaseBuilds = false
         disable.add("InvalidPackage")
     }
 }

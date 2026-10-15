@@ -9,18 +9,14 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-val flutterRoot = localProperties.getProperty("flutter.sdk")
-    ?: throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-
 val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("dev.flutter.flutter-gradle-plugin")
 }
-
-apply(from = "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle")
 
 android {
     namespace = "com.eopeter.dtmf_example"
@@ -30,15 +26,15 @@ android {
         getByName("main").java.srcDirs("src/main/kotlin")
     }
 
-    lintOptions {
+    lint {
         isCheckReleaseBuilds = false
-        disable("InvalidPackage")
+        disable.add("InvalidPackage")
     }
 
     defaultConfig {
         applicationId = "com.eopeter.flutter_dtmf_example"
-        minSdk = flutter.property("minSdkVersion") as? Int ?: 24
-        targetSdk = 31
+        minSdk = 24
+        targetSdk = 34
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -65,7 +61,6 @@ flutter {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

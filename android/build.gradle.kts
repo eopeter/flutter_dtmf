@@ -1,34 +1,19 @@
-group = "com.eopeter.flutter_dtmf"
-version = "1.0-SNAPSHOT"
-
-buildscript {
-    extra["kotlin_version"] = "2.4.0"
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:9.1.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${extra["kotlin_version"]}")
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("org.jetbrains.kotlin.android")
 }
+
+group = "com.eopeter.flutter_dtmf"
+version = "1.0-SNAPSHOT"
 
 android {
     namespace = "com.eopeter.flutter_dtmf"
     compileSdk = 36
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
@@ -39,14 +24,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lintOptions {
+    lint {
         isCheckReleaseBuilds = false
-        disable("InvalidPackage")
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        disable.add("InvalidPackage")
     }
 
     kotlinOptions {

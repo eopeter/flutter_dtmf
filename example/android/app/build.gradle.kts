@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId = "com.eopeter.flutter_dtmf_example"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

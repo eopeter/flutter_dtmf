@@ -1,6 +1,5 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
 }
 
 group = "com.eopeter.flutter_dtmf"
@@ -27,10 +26,6 @@ android {
     lint {
         isCheckReleaseBuilds = false
         disable.add("InvalidPackage")
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 

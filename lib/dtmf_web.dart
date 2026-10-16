@@ -26,7 +26,9 @@ class DtmfPlugin extends DtmfPlatform {
       {required String digits,
       int? durationMs,
       double? samplingRate,
-      double? volume}) async {
+      double? volume,
+      bool? ignoreDtmfSystemSettings,
+      bool? forceMaxVolume = false}) async {
     var dtmf = DTMF();
     return await dtmf.playTone(
         digits: digits,

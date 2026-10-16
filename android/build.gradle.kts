@@ -1,40 +1,42 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id("com.android.library")
 }
 
-group 'com.eopeter.flutter_dtmf'
-version '1.0-SNAPSHOT'
+group = "com.eopeter.flutter_dtmf"
+version = "1.0-SNAPSHOT"
 
 android {
-    namespace "com.eopeter.flutter_dtmf"
-    compileSdk 36
+    namespace = "com.eopeter.flutter_dtmf"
+    compileSdk = 36
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        test.java.srcDirs += 'src/test/kotlin'
+        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("test").java.srcDirs("src/test/kotlin")
     }
+
     defaultConfig {
-        minSdkVersion 24
+        minSdk = 24
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     lint {
-        disable 'InvalidPackage'
+        checkReleaseBuilds = false
+        disable.add("InvalidPackage")
     }
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
-    }
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)    }
 }
 
 dependencies {
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
-    testImplementation "junit:junit:4.13.2"
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    testImplementation("junit:junit:4.13.2")
 }

@@ -109,9 +109,9 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/example/lib/main.dart</url>
-          <line>31</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/out/production/dtmf/dtmf_platform_interface.dart</url>
+          <line>33</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

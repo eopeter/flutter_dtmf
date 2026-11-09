@@ -40,9 +40,9 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
             val digits = arguments?.get("digits") as? String
             val samplingRate = arguments?.get("samplingRate") as? Float
             val durationMs = arguments?.get("durationMs") as? Int
-            val volume = arguments?.get("volume") as Double
-            val ignoreDtmfSystemSettings = arguments?.get("ignoreDtmfSystemSettings") as Boolean
-            val forceMaxVolume = arguments?.get("forceMaxVolume") as Boolean
+            val volume = arguments?.get("volume") as? Double ?: 1.0
+            val ignoreDtmfSystemSettings = arguments?.get("ignoreDtmfSystemSettings") as? Boolean ?: false
+            val forceMaxVolume = arguments?.get("forceMaxVolume") as? Boolean ?: false
             if (digits != null) {
                 playTone(
                     digits.trim(),

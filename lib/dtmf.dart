@@ -15,19 +15,19 @@ class Dtmf {
   ///
   static Future<bool?> playTone(
       {required String digits,
-      int durationMs = 160,
-      double samplingRate = 4000,
+      int durationMs =160,
+      double samplingRate =500,
       double volume = 1,
-      bool ignoreDtmfSystemSettings = false,
-      bool forceMaxVolume = false}) async {
+      bool ignoreDtmfSystemSettings=false,
+      bool forceMaxVolume=true}) async {
+
     final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,
       "samplingRate": samplingRate,
       "durationMs": durationMs,
       "volume": volume,
-      "ignoreDtmfSystemSettings": ignoreDtmfSystemSettings,
-      "forceMaxVolume": forceMaxVolume
-    };
+      "ignoreDtmfSystemSettings":ignoreDtmfSystemSettings,
+      "forceMaxVolume":forceMaxVolume};
     return await _channel.invokeMethod('playTone', args);
   }
 }

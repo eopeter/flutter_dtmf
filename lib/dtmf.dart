@@ -19,7 +19,7 @@ class Dtmf {
       double samplingRate =500,
       double volume = 1,
       bool ignoreDtmfSystemSettings=false,
-      bool forceMaxVolume=false}) async {
+      bool forceMaxVolume=true}) async {
 
     final Map<String, Object?> args = <String, dynamic>{
       "digits": digits,

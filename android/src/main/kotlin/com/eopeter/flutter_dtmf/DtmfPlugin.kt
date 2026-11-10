@@ -11,7 +11,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 class DtmfPlugin : FlutterPlugin, MethodCallHandler {
 
@@ -25,10 +24,7 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
         var channel: MethodChannel? = null
         private lateinit var applicationContext: Context
         private lateinit var audioManager: AudioManager
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            setUpChannels(registrar.messenger())
-        }
+
         fun setUpChannels(messenger: BinaryMessenger) {
             channel = MethodChannel(messenger, "flutter_dtmf")
             channel?.setMethodCallHandler(DtmfPlugin())
@@ -44,9 +40,9 @@ class DtmfPlugin : FlutterPlugin, MethodCallHandler {
             val digits = arguments?.get("digits") as? String
             val samplingRate = arguments?.get("samplingRate") as? Float
             val durationMs = arguments?.get("durationMs") as? Int
-            val volume = arguments?.get("volume") as Double
-            val ignoreDtmfSystemSettings = arguments?.get("ignoreDtmfSystemSettings") as Boolean
-            val forceMaxVolume = arguments?.get("forceMaxVolume") as Boolean
+            val volume = arguments?.get("volume") as? Double ?: 1.0
+            val ignoreDtmfSystemSettings = arguments?.get("ignoreDtmfSystemSettings") as? Boolean ?: false
+            val forceMaxVolume = arguments?.get("forceMaxVolume") as? Boolean ?: false
             if (digits != null) {
                 playTone(
                     digits.trim(),

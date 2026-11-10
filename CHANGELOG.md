@@ -1,3 +1,8 @@
+## 3.0.3
+* Fix web version
+* Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
+* Migrates to built-in Kotlin.
+
 ## 3.0.2
 * Revert Fix introduced in 3.0.1 which has been deleted in 3.0.2
 * Fix issue  : "AUDIO_OUTPUT_FLAG_FAST denied by server"
